@@ -1,0 +1,16 @@
+{% extends "truckReviews/base.html" %}
+{% block content %}
+    <div class="d-flex flex-row flex-wrap justify-content-around">
+        {% for truck in trucks %}
+            <div class="card mb-2 mt-2" style="width: 20rem;">
+                <img src=" {{ truck.coverPhotoSRC }}" alt="" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title"> {{ truck.name }}</h5>
+                    <h6 class="card-text text-muted">{{ truck.category }}</h6>
+                    <p class="card-text" style="font-size: 0.8rem;"> {{ truck.bio }}</p>
+                    <a href="#" class="btn btn-outline-info align-self-end">View</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
