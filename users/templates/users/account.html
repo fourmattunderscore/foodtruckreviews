@@ -1,5 +1,13 @@
 {% extends "truckReviews/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <h1>{{ user.username }}</h1>
+<div class="content-section border rounded mt-1">
+    <div class="media p-2">
+      <div class="media-body">
+        <h2 class="display-4 text-center">{{ user.username }}</h2>
+        <p class="text-secondary">{{ user.email }}</p>
+      </div>
+    </div>
+    <!-- FORM HERE -->
+  </div>
 {% endblock content %}
