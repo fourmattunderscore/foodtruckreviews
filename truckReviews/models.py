@@ -25,22 +25,7 @@ class FoodTruck(models.Model):
     def __str__(self):
         return self.name
 
-#class Review(models.Model):
-#    review = models.AutoField(primary_key=True, unique=True, serialize=False, null=False)
-#    truck = models.ForeignKey(FoodTrucks, on_delete=models.CASCADE)
-#    user = models.ForeignKey(User, on_delete=models.CASCADE)
-#    datePosted = models.DateTimeField(default=timezone.now)
-#    speedOfService = models.IntegerField()
-#    qualityAndTaste = models.IntegerField()
-#    valueForMoney = models.IntegerField()
-#    comment = models.TextField(max_length=128)
-
-    #def get_absolute_url(self):
-    #    return reverse('truck-detail', kwargs={'pk': self.pk})
-
-#models.ChoiceField(intChoice)
-
-intChoice = [(1, 'Positive'),(0, 'Neutral'),(-1, 'Negative')]
+intChoice = [(1, 'Positive'), (0, 'Neutral'), (-1, 'Negative')]
 
 class Review(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4)

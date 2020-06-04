@@ -17,32 +17,6 @@ class TruckListView(generic.ListView):
     context_object_name = 'trucks' # object_list <-- Base Django Convention
     ordering = 'name'
 
-#class TruckCreateReviewView(generic.CreateView):
-#    model = Review
-#    template_name = 'truckReviews/createTruckReview.html'
-#    fields = ['speedOfService', 'qualityAndTaste', 'valueForMoney', 'comment']
-#
-#    def form_valid(self, form):
-#        form.instance.author = self.request.user
-#        return super().form_valid(form)
-#-------------------------------------------------------
-    
-    #def get_queryset(self):
-    #    self.pk = self.kwargs['pk']
-    #    queryset = super(TruckReviewView, self).get_queryset()
-    #    return queryset
-    
-    #def get_context_data(self, **kwargs):
-    #    context = super().get_context_data(**kwargs)
-    #    try:
-    #        item = queryset.get(id=kwargs['pk'])
-    #    except:
-    #        #...
-    #    else:
-    #        context['item'] = item
-    #    finally:
-    #        return context
-
 class FoodTruckDetailReviewListCreateView(
     generic.list.MultipleObjectMixin, generic.edit.CreateView,
 ):
@@ -119,12 +93,6 @@ class FoodTruckDetailReviewListCreateView(
         form.instance.user = self.request.user
         form.instance.food_truck_id = pk
         return super().form_valid(form)
-
-#class TruckReviewListView(generic.ListView):
-#    model = Review
-#    template_name = 'truckReviews/truckReviewDetail.html'
-#    context_object_name = 'reviews'
-#    ordering = '-datePosted'
 
 class About(generic.TemplateView):
     template_name = 'truckReviews/about.html'
