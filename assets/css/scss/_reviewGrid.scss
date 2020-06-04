@@ -1,0 +1,6 @@
+#reviewGrid {
+    display: grid;
+    grid-template-areas: 
+        'reviewStats reviewComment reviewComment';
+    margin: 0 auto;
+}

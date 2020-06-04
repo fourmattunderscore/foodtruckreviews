@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "ACAA,AAAA,WAAW,CAAC;EACR,OAAO,EAAE,IAAI;EACb,mBAAmB,EACf,yCAAyC;EAC7C,MAAM,EAAE,MAAM;CACjB",
+    "sources": [
+        "main.scss",
+        "scss/_reviewGrid.scss"
+    ],
+    "names": [],
+    "file": "main.css"
+}

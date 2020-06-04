@@ -1,0 +1,7 @@
+#reviewGrid {
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: 'reviewStats reviewComment reviewComment';
+  margin: 0 auto;
+}
+/*# sourceMappingURL=main.css.map */
