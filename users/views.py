@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+#from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views import generic
 from .forms import UserRegisterForm, UserUpdateForm
 
 def register(request):
@@ -32,3 +34,22 @@ def account(request):
         'form': form
     }
     return render(request, 'users/account.html', context)
+
+#class AccountUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+#    template_name = 'users/account.html'
+#    form_class = UserUpdateForm
+#
+#    def test_func(self):
+#        if self.request.user.username == self.kwargs.get('username'):
+#            return True
+#        return False
+#    
+#    def get_object(self, queryset=None): 
+#            return self.request.user.username
+#
+#    def form_valid(self, request, form):
+#            clean = form.cleaned_data 
+#            context = {}        
+#            self.object = context.save(clean) 
+#            messages.success(request, f'Account information successfully updated!')
+#            return super(AccountUpdateView, self).form_valid(form)    #redirect('user-account', kwargs={'username': self.request.user.username})

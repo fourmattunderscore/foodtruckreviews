@@ -23,7 +23,7 @@
             </li>
             {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a href="#" class="nav-link disabled">My Reviews</a>
+                    <a href="{% url 'user-reviews' user.username %}" class="nav-link">My Reviews</a>
                 </li>
             {% endif %}
         </ul>

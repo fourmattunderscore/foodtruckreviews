@@ -1,5 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.models import User
 from .models import FoodTruck, Review
 from .forms import ReviewForm
 import typing as t
@@ -16,6 +18,21 @@ class TruckListView(generic.ListView):
     template_name = 'truckReviews/landing.html' # <app>/<model>_<viewtype>.html <-- Base Django Convention
     context_object_name = 'trucks' # object_list <-- Base Django Convention
     ordering = 'name'
+    paginate_by = 9
+
+class UserReviewListView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+    model = Review
+    template_name = 'users/userReviews.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Review.objects.filter(user=user.id).order_by('food_truck')
+    
+    def test_func(self):
+        if self.request.user.username == self.kwargs.get('username'):
+            return True
+        return False
 
 class FoodTruckDetailReviewListCreateView(
     generic.list.MultipleObjectMixin, generic.edit.CreateView,
