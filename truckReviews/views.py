@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+
 from .models import FoodTruck, Review
 from .forms import ReviewForm
-import typing as t
 
+import typing as t
 if t.TYPE_CHECKING:
     from django.http import HttpRequest, HttpResponse
     from django.contrib.auth.models import AbstractUser

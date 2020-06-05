@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'truckReviews.apps.TruckreviewsConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
+    'django_filters',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
