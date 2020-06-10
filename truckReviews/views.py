@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 from .models import FoodTruck, Review
 from .forms import ReviewForm
+from .filters import FoodTruckFilter
 
 import typing as t
 if t.TYPE_CHECKING:
@@ -17,9 +18,14 @@ if t.TYPE_CHECKING:
 class TruckListView(generic.ListView):
     model = FoodTruck
     template_name = 'truckReviews/landing.html' # <app>/<model>_<viewtype>.html <-- Base Django Convention
-    context_object_name = 'trucks' # object_list <-- Base Django Convention
+    #context_object_name = 'trucks' # object_list <-- Base Django Convention
     ordering = 'name'
-    paginate_by = 9
+    #paginate_by = 9
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = FoodTruckFilter(self.request.GET, queryset=self.get_queryset())
+        return context
 
 class UserReviewListView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
     model = Review
@@ -115,11 +121,10 @@ class FoodTruckDetailReviewListCreateView(
 class About(generic.TemplateView):
     template_name = 'truckReviews/about.html'
 
-import json
-import requests
-from django.http import HttpResponse
-
 def update(request):
+    import json
+    import requests
+    from django.http import HttpResponse
     unfiltered_json = requests.get("https://www.bnefoodtrucks.com.au/api/1/trucks")
     foodTruck_dictionary = json.loads(unfiltered_json.text)
     for i in foodTruck_dictionary:

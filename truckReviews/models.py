@@ -26,7 +26,6 @@ class FoodTruck(models.Model):
         return self.name
 
 intChoice = [(1, 'Positive'), (0, 'Neutral'), (-1, 'Negative')]
-
 class Review(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4)
     food_truck = models.ForeignKey(
@@ -40,9 +39,7 @@ class Review(models.Model):
     comment = models.TextField(max_length=128, blank=True, null=True)
 
     def __str__(self):
-        return "Review about {} by {}".format(
-            self.food_truck.name, self.user.username#get_full_name()
-        )
+        return f'Review about {self.food_truck.name} by {self.user.username}'
 
     def get_absolute_url(self):
         return reverse('truck-review', kwargs={'pk': self.food_truck.truck})

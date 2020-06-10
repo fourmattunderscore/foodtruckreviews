@@ -1,0 +1,13 @@
+<nav class="d-flex justify-content-center align-items-center sticky-top mt-2">
+    <form method="get" class="border rounded p-2 bg-light">
+        {% for field in filter.form %}
+            <span class="form-group">
+                <label for="{{ field.id_for_label }}" class="control-label">
+                    {{ field.label }}:
+                </label>
+                {{ field }}
+            </span>
+        {% endfor %}
+        <button type="submit" class="btn btn-success">Search</button>
+    </form>
+</nav>

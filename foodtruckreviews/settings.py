@@ -33,8 +33,11 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'truckReviews.apps.TruckreviewsConfig',
     'users.apps.UsersConfig',
+    
     'crispy_forms',
     'django_filters',
+    'bootstrapform',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

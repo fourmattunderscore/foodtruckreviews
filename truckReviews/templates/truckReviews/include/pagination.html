@@ -1,4 +1,6 @@
+
 {% if is_paginated %}
+<div class="d-flex justify-content-center">
     <nav aria-label="Page Navigation">
         <ul class="pagination">
             {% if page_obj.has_previous %}
@@ -49,4 +51,5 @@
             {% endif %}
         </ul>
     </nav>
+</div>
 {% endif %}
