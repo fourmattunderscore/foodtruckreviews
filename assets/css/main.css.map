@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "ACAA,AAAA,WAAW,CAAC;EACR,OAAO,EAAE,IAAI;EACb,mBAAmB,EACf,yCAAyC;CAChD",
+    "mappings": "AAAA,iBAAiB;ACAjB,AAAA,WAAW,CAAC;EACR,OAAO,EAAE,IAAI;EACb,mBAAmB,EACf,yCAAyC;CAChD",
     "sources": [
         "main.scss",
         "scss/_reviewGrid.scss"
