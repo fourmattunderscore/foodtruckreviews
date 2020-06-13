@@ -31,6 +31,7 @@ class Review(models.Model):
     food_truck = models.ForeignKey(
         FoodTruck, on_delete=models.CASCADE, related_name="reviews", default=None
     )
+    category = models.CharField(max_length=20, default='category', blank=True, null=False)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     posted_at = models.DateTimeField(default=timezone.now)
     speed_of_service = models.IntegerField(default=intChoice, choices=intChoice)

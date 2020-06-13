@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+from django.db.models import Avg, Sum
 
 from .models import FoodTruck, Review
 from .forms import ReviewForm
@@ -116,6 +117,7 @@ class FoodTruckDetailReviewListCreateView(
         global pk
         form.instance.user = self.request.user
         form.instance.food_truck_id = pk
+        form.instance.category = form.instance.food_truck.category
         return super().form_valid(form)
 
 class About(generic.TemplateView):
@@ -137,3 +139,19 @@ def update(request):
         i.save()
 
     return HttpResponse("API Imported")
+
+class ReviewListView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+    model = Review
+    template_name = 'users/admin_all_results.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Review.objects.exclude(category='').values_list('category', flat=True).distinct().order_by('category')
+        return context
+
+    def test_func(self):
+        if self.request.user.is_staff == True:
+            return True
+        return False
+
+        

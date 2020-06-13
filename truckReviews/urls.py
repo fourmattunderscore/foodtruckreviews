@@ -5,7 +5,8 @@ from .views import (
     TruckListView, 
     FoodTruckDetailReviewListCreateView, 
     UserReviewListView,
-    update
+    update,
+    ReviewListView
 )
 
 urlpatterns = [
@@ -13,5 +14,6 @@ urlpatterns = [
     path('account/<str:username>/reviews/', UserReviewListView.as_view(), name='user-reviews'),
     path('truck/<int:pk>/', FoodTruckDetailReviewListCreateView.as_view(), name='truck-review'),
     path('about/', About.as_view(), name='reviews-about'),
-    path('updateAPI/', update, name='update-api')
+    path('updateAPI/', update, name='update-api'),
+    path('admin/review-results', ReviewListView.as_view(), name='admin-reviews')
 ]

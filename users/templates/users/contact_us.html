@@ -1,0 +1,16 @@
+{% extends "truckReviews/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section border rounded p-3 mt-1 mb-1">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Contact</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-info" type="Submit">Submit</button>
+            </div>
+        </form>
+
+{% endblock content %}

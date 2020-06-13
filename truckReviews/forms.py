@@ -13,7 +13,7 @@ class ReviewForm(forms.ModelForm):
         model = Review
         ordering = ['-posted_at']
         fields = ('speed_of_service', 'quality_and_taste', 'value_for_money', 'comment')
-        exclude = ("uuid", "user", "food_truck", "posted_at")
+        exclude = ("uuid", "user", "food_truck", "posted_at", "category")
         labels = {
             'speed_of_service': _('Speed Of Service'),
             'quality_and_taste': _('Quality And Taste'),

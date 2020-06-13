@@ -1,0 +1,31 @@
+{% extends "truckReviews/base.html" %}
+{% block content %}
+    {% for each in categories %}
+        <div class="border rounded p-2 m-2">
+            <h4>{{each}}</h4>
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Food Truck</th>
+                        <th scope="col">Speed of Service</th>
+                        <th scope="col">Quality and Taste</th>
+                        <th scope="col">Value for Money</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for review in object_list %}
+                        <tr>
+                            {% if review.food_truck.category in each %}
+                                <td><a href="{% url 'truck-review' review.food_truck.truck %}">{{ review.food_truck.name }}</a></td>
+                                <td>{{ review.speed_of_service }}</td>
+                                <td>{{ review.quality_and_taste }}</td>
+                                <td>{{ review.value_for_money }}</td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+    {% endfor %}
+{% endblock content %}
