@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-#from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.urls import reverse_lazy
 from django.views import generic
+from django.contrib.auth.models import User
 
 from .forms import UserRegisterForm, UserUpdateForm, ContactForm
 
@@ -37,24 +39,21 @@ def account(request):
     }
     return render(request, 'users/account.html', context)
 
-#class AccountUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
-#    template_name = 'users/account.html'
-#    form_class = UserUpdateForm
-#
-#    def test_func(self):
-#        if self.request.user.username == self.kwargs.get('username'):
-#            return True
-#        return False
-#    
-#    def get_object(self, queryset=None): 
-#            return self.request.user.username
-#
-#    def form_valid(self, request, form):
-#            clean = form.cleaned_data 
-#            context = {}        
-#            self.object = context.save(clean) 
-#            messages.success(request, f'Account information successfully updated!')
-#            return super(AccountUpdateView, self).form_valid(form)    #redirect('user-account', kwargs={'username': self.request.user.username})
+class AccountUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = User
+    template_name = 'users/account.html'
+    form_class = UserUpdateForm
+    success_url = reverse_lazy('user-account')
+    
+    def get_object(self, queryset=None): 
+            return self.request.user.username
+
+    def form_valid(self, request, form):
+            clean = form.cleaned_data      
+            form.save(clean) 
+            messages.success(request, f'Account information successfully updated!')
+            return super().form_valid(form)  
+            #return super(AccountUpdateView, self).form_valid(form)
 
 class ContactFormView(generic.FormView):
     form_class = ContactForm

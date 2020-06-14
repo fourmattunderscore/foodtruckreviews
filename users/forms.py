@@ -9,7 +9,7 @@ from crispy_forms.layout import Submit
 from foodtruckreviews import settings
 
 class UserRegisterForm(UserCreationForm):
-    email = forms.EmailField()
+    email = forms.EmailField(max_length=254)
 
     class Meta:
         model = User

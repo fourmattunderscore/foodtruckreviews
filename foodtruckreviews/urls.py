@@ -4,14 +4,14 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from users import views as user_views
-from users.views import ContactFormView
+from users.views import ContactFormView, AccountUpdateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', user_views.register, name="user-register"),
     path('account/', user_views.account, name="user-account"),
     path('contact/', ContactFormView.as_view(), name="user-contact"),
-    #path('account/<str:username>', user_views.ClassView.as_view, name="user-account"), <-- Attemp to turn into class based view
+    #path('account/', AccountUpdateView.as_view(), name="user-account"),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name="user-login"),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name="user-logout"),
     path('password-reset/', auth_views.PasswordResetView.as_view(
