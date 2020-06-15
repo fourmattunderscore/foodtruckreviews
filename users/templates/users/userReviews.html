@@ -1,32 +1,34 @@
 {% extends "truckReviews/base.html" %}
 {% block content %}
-    <div class="mb-3 border-bottom display-4" style="font-size: 2rem;">{{ view.kwargs.username }}'s reviews. ({{ page_obj.paginator.count }} reviews)</div>
-    {% for review in object_list %}
-        <div class="media border rounded m-1">
-            <div class="media-body p-2">
-                <span class="h5 mt-0">{{ review.food_truck }}</span>
-                -
-                <span class="text-muted">{{ review.posted_at|date:'F d, Y' }}</span>
-                <div id="reviewGrid">
-                    <div id="reviewStats">
-                        <strong>Ratings:</strong>
-                        <br />
-                        Speed of Service: {{ review.speed_of_service }} <br />
-                        Quality and Taste: {{ review.quality_and_taste }} <br />
-                        Value for Money: {{ review.value_for_money }} <br />
-                    </div>
-                    <div id="reviewComment">
-                    {% if review.comment %}
-                        <strong>Comment:</strong> 
-                        <br />
-                        {{ review.comment }}
-                    {% endif %}
+    <div style="min-height: 66vh;">
+        <div class="mb-3 border-bottom display-4" style="font-size: 2rem;">{{ view.kwargs.username }}'s reviews. ({{ page_obj.paginator.count }} reviews)</div>
+        {% for review in object_list %}
+            <div class="media border rounded m-1">
+                <div class="media-body p-2">
+                    <span class="h5 mt-0">{{ review.food_truck }}</span>
+                    -
+                    <span class="text-muted">{{ review.posted_at|date:'F d, Y' }}</span>
+                    <div id="reviewGrid">
+                        <div id="reviewStats">
+                            <strong>Ratings:</strong>
+                            <br />
+                            Speed of Service: {{ review.speed_of_service }} <br />
+                            Quality and Taste: {{ review.quality_and_taste }} <br />
+                            Value for Money: {{ review.value_for_money }} <br />
+                        </div>
+                        <div id="reviewComment">
+                        {% if review.comment %}
+                            <strong>Comment:</strong> 
+                            <br />
+                            {{ review.comment }}
+                        {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
+        {% endfor %}
+        <div class="d-flex justify-content-center">
+            {% include "truckReviews/include/pagination.html" %}
         </div>
-    {% endfor %}
-    <div class="d-flex justify-content-center">
-        {% include "truckReviews/include/pagination.html" %}
     </div>
 {% endblock content %}

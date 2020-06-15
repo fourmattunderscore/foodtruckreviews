@@ -15,17 +15,26 @@
     {% include "truckReviews/include/imports.html" %}
 </head>
 <body>
-    {% include "truckReviews/include/navbar.html" %}
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }} container mt-1">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endif %}
+    <!--{% include "truckReviews/include/preloader.html" %}-->
+    <section>
+        {% include "truckReviews/include/navbar.html" %}
+    </section>
+
+    <section>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} container mt-1">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </section>
+
     <main class='container'>
         {% block content %}{% endblock %}
     </main>
-    {% include "truckReviews/include/footer.html" %}
+    <section>
+        {% include "truckReviews/include/footer.html" %}
+    </section>
 </body>
 </html>
